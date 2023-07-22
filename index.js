@@ -25,6 +25,14 @@ async function run() {
   try {
     await client.connect();
     const usersCollection = client.db('Collages').collection('users');
+    const collageCollection = client.db('Collages').collection('collages');
+
+    // Collage Api
+    app.get('/all-collages', async(req,res)=>{
+      const result = await collageCollection.find().toArray()
+      res.send(result)
+    })
+
 
     // User Post On Database.
     app.post('/users', async (req, res) => {
