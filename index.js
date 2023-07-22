@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.PORT || 5000;
 require('dotenv').config()
 const app = express();
@@ -24,27 +24,62 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
+    const usersCollection = client.db('Collages').collection('users');
 
-    app.get('/testing',async(req,res)=>{
-        res.send('Okey Sir, MongoDb Is OKeh')
+    // User Post On Database.
+    app.post('/users', async (req, res) => {
+      const user = req.body;
+      const query = { email: user.email };
+      const exitingUser = await usersCollection.findOne(query);
+      if (exitingUser) {
+        // console.log(exitingUser);
+        return res.send({ Message: 'User Already exiting on Database' })
+      }
+      const result = await usersCollection.insertOne(user);
+      // console.log(result);
+      res.send(result)
     })
 
-    // Send a ping to confirm a successful connection
+    // New endpoint for handling PUT request to update user profile
+    app.put('/user/:id', async (req, res) => {
+      const id = req.params.id;
+      const updatedUser = req.body;
+      delete updatedUser._id;
+
+      const result = await usersCollection.findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $set: updatedUser },
+        { returnOriginal: false }
+      );
+
+      res.send(result.value);
+
+    });
+
+    // Get User for Build Profile Info.
+    app.get('/user', async (req, res) => {
+      const email = req.query.email;
+      const user = await usersCollection.findOne({ email });
+      // console.log(user);
+      res.send(user);
+    })
+
+
+
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
-    // Ensures that the client will close when you finish/error
     // await client.close();
   }
 }
 run().catch(console.dir);
 
 
-app.get('/',(req,res)=>{
-    res.send('Asslamualikom Server Is Running')
+app.get('/', (req, res) => {
+  res.send('Asslamualikom Server Is Running')
 })
 
-app.listen(port,()=>{
-    console.log('Hey! Developer!! No Pain No Gain');
-    console.log(`Server is Running On Port ${port}`);
+app.listen(port, () => {
+  console.log('Hey! Developer!! No Pain No Gain');
+  console.log(`Server is Running On Port ${port}`);
 })
