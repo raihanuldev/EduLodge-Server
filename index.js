@@ -26,6 +26,14 @@ async function run() {
     await client.connect();
     const usersCollection = client.db('Collages').collection('users');
     const collageCollection = client.db('Collages').collection('collages');
+    const admissionsCollection = client.db('Collages').collection('admissions');
+
+    // Admissions COllections api 
+    app.post('/admissions', async (req,res)=>{
+      const application = req.body;
+      const result = await admissionsCollection.insertOne(application);
+      res.send(result);
+    }) 
 
     // Collage Api
     app.get('/all-collages', async(req,res)=>{
@@ -37,7 +45,7 @@ async function run() {
     app.get('/details/:id',async (req,res)=>{
       const id = req.params.id
       const query = {_id: new ObjectId(id)}
-      console.log(query);
+      // console.log(query);
       const result = await collageCollection.findOne(query);
       res.send(result)
     })
