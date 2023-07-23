@@ -33,7 +33,16 @@ async function run() {
       const application = req.body;
       const result = await admissionsCollection.insertOne(application);
       res.send(result);
-    }) 
+    })
+
+    app.get('/applications',async(req,res)=>{
+      const email = req.query.email;
+      console.log(email);
+      const query = {email: email};
+      const result = await admissionsCollection.find(query).toArray();
+      // console.log(result);
+      res.send(result)
+    })
 
     // Collage Api
     app.get('/all-collages', async(req,res)=>{
