@@ -1,0 +1,31 @@
+[
+    {
+      "name": "Hamid Chowdhury",
+      "image":"https://avatars.githubusercontent.com/u/100404131?v=4",
+      "ratings": 4.5,
+      "date": "2023-07-24",
+      "feedback": "Great product! I love it."
+    },
+    {
+      "name": "Rashid Khan",
+      "image":"https://scontent.fcgp29-1.fna.fbcdn.net/v/t39.30808-6/281370873_802504237798201_2871250717812373671_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5b7eaf&_nc_eui2=AeGDEZbSynAzyubXHtpTxDbgaHWdgO8pzC9odZ2A7ynMLysDp53FwRgBCR_VwM_DYaGlDgaxBg482EAp-6DuAvc_&_nc_ohc=nQMKM8ghHswAX9YUga9&_nc_ht=scontent.fcgp29-1.fna&oh=00_AfBB0zBk6ZYkQlIlhPBex6CnuuOZk_f1V7cpgs6bs7L6Xw&oe=64C2370F",
+      "ratings": 3.2,
+      "date": "2023-07-23",
+      "feedback": "Decent, but could be improved."
+    },
+    {
+      "name": "Habib binte Jesmin",
+      "image":"https://scontent.fcgp29-1.fna.fbcdn.net/v/t39.30808-6/357700494_3129279337376962_3431251315094247424_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeExPWHiLUdGp-8sQ5VOdhiMs5bqJvXm0kazluom9ebSRv6X5Tm9jttHo9ODiaKkZxKv-3OSDytROkBA0UWh-KM5&_nc_ohc=aEfTCC8sY6sAX9OXsvr&_nc_ht=scontent.fcgp29-1.fna&oh=00_AfD-HaZ8uQ-jVNS_z51FVIJS0cZgMKUWTXm3sHr0D6BLfA&oe=64C28BF3",
+      "ratings": 5.0,
+      "date": "2023-07-22",
+      "feedback": "Excellent service. Highly recommended!"
+    },
+    {
+      "name": "Mostak Ahmed",
+      "image":"https://scontent.fcgp29-1.fna.fbcdn.net/v/t39.30808-6/342528326_725368499271803_936283900285793593_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=174925&_nc_eui2=AeEOqtFTZU9NaLBBDS0wi2fisrZSmdDcT4eytlKZ0NxPh8lYLOm9hr5yBxY6XSKq_1EZ2JwO3iEP1eJd9CZUxLsg&_nc_ohc=f6BqC0lgoU0AX_nhoz7&_nc_ht=scontent.fcgp29-1.fna&oh=00_AfCgh60ckeY_EeiW84gsIl_r2F6FDrlpor3CLtc6aZxeXQ&oe=64C313F3",
+      "ratings": 2.1,
+      "date": "2023-07-21",
+      "feedback": "Not satisfied with the quality."
+    }
+  ]
+  

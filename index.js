@@ -27,6 +27,14 @@ async function run() {
     const usersCollection = client.db('Collages').collection('users');
     const collageCollection = client.db('Collages').collection('collages');
     const admissionsCollection = client.db('Collages').collection('admissions');
+    const reviewsCollection = client.db('Collages').collection('reviews');
+
+
+    // Client Feedback api 
+    app.get('/reviews',async(req,res)=>{
+      const result = await reviewsCollection.find().toArray();
+      res.send(result);
+    })
 
     // Admissions COllections api 
     app.post('/admissions', async (req,res)=>{
