@@ -33,6 +33,15 @@ async function run() {
       res.send(result)
     })
 
+    // Collage Details 
+    app.get('/details/:id',async (req,res)=>{
+      const id = req.params.id
+      const query = {_id: new ObjectId(id)}
+      console.log(query);
+      const result = await collageCollection.findOne(query);
+      res.send(result)
+    })
+
 
     // User Post On Database.
     app.post('/users', async (req, res) => {
