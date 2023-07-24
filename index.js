@@ -30,50 +30,57 @@ async function run() {
     const reviewsCollection = client.db('Collages').collection('reviews');
     const researchCollection = client.db('Collages').collection('research');
 
+    // Search collages by collegeName
+    app.get('/search-collages', async (req, res) => {
+      const query = req.query.query;
+      const result = await collageCollection.find({ collegeName: { $regex: query, $options: 'i' } }).toArray();
+      res.send(result);
+    });
+
     // Research Paper Api
-    app.get('/research-papers',async(req,res)=>{
+    app.get('/research-papers', async (req, res) => {
       const result = await researchCollection.find().toArray();
       res.send(result)
-    }) 
+    })
 
     // Client Feedback api 
-    app.get('/reviews',async(req,res)=>{
+    app.get('/reviews', async (req, res) => {
       const result = await reviewsCollection.find().toArray();
       res.send(result);
     })
     // Upload Feedback api
-    app.post('/reviews',async (req,res)=>{
+    app.post('/reviews', async (req, res) => {
       const newFeedback = req.body;
       const result = await reviewsCollection.insertOne(newFeedback);
       res.send(result)
     })
 
     // Admissions COllections api 
-    app.post('/admissions', async (req,res)=>{
+    app.post('/admissions', async (req, res) => {
       const application = req.body;
       const result = await admissionsCollection.insertOne(application);
       res.send(result);
     })
 
-    app.get('/applications',async(req,res)=>{
+    app.get('/applications', async (req, res) => {
       const email = req.query.email;
       // console.log(email);
-      const query = {email: email};
+      const query = { email: email };
       const result = await admissionsCollection.findOne(query);
       // console.log(result);
       res.send(result)
     })
 
     // Collage Api
-    app.get('/all-collages', async(req,res)=>{
+    app.get('/all-collages', async (req, res) => {
       const result = await collageCollection.find().toArray()
       res.send(result)
     })
 
     // Collage Details 
-    app.get('/details/:id',async (req,res)=>{
+    app.get('/details/:id', async (req, res) => {
       const id = req.params.id
-      const query = {_id: new ObjectId(id)}
+      const query = { _id: new ObjectId(id) }
       // console.log(query);
       const result = await collageCollection.findOne(query);
       res.send(result)
