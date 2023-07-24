@@ -28,12 +28,24 @@ async function run() {
     const collageCollection = client.db('Collages').collection('collages');
     const admissionsCollection = client.db('Collages').collection('admissions');
     const reviewsCollection = client.db('Collages').collection('reviews');
+    const researchCollection = client.db('Collages').collection('research');
 
+    // Research Paper Api
+    app.get('/research-papers',async(req,res)=>{
+      const result = await researchCollection.find().toArray();
+      res.send(result)
+    }) 
 
     // Client Feedback api 
     app.get('/reviews',async(req,res)=>{
       const result = await reviewsCollection.find().toArray();
       res.send(result);
+    })
+    // Upload Feedback api
+    app.post('/reviews',async (req,res)=>{
+      const newFeedback = req.body;
+      const result = await reviewsCollection.insertOne(newFeedback);
+      res.send(result)
     })
 
     // Admissions COllections api 
@@ -45,9 +57,9 @@ async function run() {
 
     app.get('/applications',async(req,res)=>{
       const email = req.query.email;
-      console.log(email);
+      // console.log(email);
       const query = {email: email};
-      const result = await admissionsCollection.find(query).toArray();
+      const result = await admissionsCollection.findOne(query);
       // console.log(result);
       res.send(result)
     })
