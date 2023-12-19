@@ -1,20 +1,20 @@
+const cors = require('cors');
 const express = require('express');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.PORT || 5000;
 require('dotenv').config();
 
 const app = express();
-const cors = require('cors');
 
 // Middile Ware
 app.use(cors());
 app.use(express.json())
 
-// For Handleing Cors Policy issues
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://edulodge-6481d.web.app');
-  next();
-})
+// // For Handleing Cors Policy issues
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://edulodge-6481d.web.app');
+//   next();
+// })
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jvqibpv.mongodb.net/?retryWrites=true&w=majority`;
 
